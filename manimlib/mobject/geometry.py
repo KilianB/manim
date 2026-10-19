@@ -389,12 +389,14 @@ class Circle(Arc):
     def __init__(
         self,
         start_angle: float = 0,
-        stroke_color: ManimColor = RED,
+        stroke_color: ManimColor | None = None,
+        color: ManimColor | None = None,
         **kwargs
     ):
         super().__init__(
             start_angle, TAU,
-            stroke_color=stroke_color,
+            color=color,
+            stroke_color=stroke_color or color or RED,
             **kwargs
         )
 
@@ -440,19 +442,21 @@ class Dot(Circle):
         self,
         point: Vect3 = ORIGIN,
         radius: float = DEFAULT_DOT_RADIUS,
-        stroke_color: ManimColor = BLACK,
+        stroke_color: ManimColor | None = None,
         stroke_width: float = 0.0,
         fill_opacity: float = 1.0,
-        fill_color: ManimColor = DEFAULT_MOBJECT_COLOR,
+        fill_color: ManimColor | None = None,
+        color: ManimColor | None = None,
         **kwargs
     ):
         super().__init__(
             arc_center=point,
             radius=radius,
-            stroke_color=stroke_color,
+            color=color,
+            stroke_color=stroke_color or color or BLACK,
             stroke_width=stroke_width,
             fill_opacity=fill_opacity,
-            fill_color=fill_color,
+            fill_color=fill_color or color or DEFAULT_MOBJECT_COLOR,
             **kwargs
         )
 
@@ -543,13 +547,15 @@ class AnnularSector(VMobject):
         inner_radius: float = 1.0,
         outer_radius: float = 2.0,
         arc_center: Vect3 = ORIGIN,
-        fill_color: ManimColor = DEFAULT_LIGHT_COLOR,
+        fill_color: ManimColor | None = None,
         fill_opacity: float = 1.0,
         stroke_width: float = 0.0,
+        color: ManimColor | None = None,
         **kwargs,
     ):
         super().__init__(
-            fill_color=fill_color,
+            color=color,
+            fill_color=fill_color or color or DEFAULT_LIGHT_COLOR,
             fill_opacity=fill_opacity,
             stroke_width=stroke_width,
             **kwargs,
@@ -633,12 +639,14 @@ class Annulus(VMobject):
         outer_radius: float = 2.0,
         fill_opacity: float = 1.0,
         stroke_width: float = 0.0,
-        fill_color: ManimColor = DEFAULT_LIGHT_COLOR,
+        fill_color: ManimColor | None = None,
         center: Vect3 = ORIGIN,
+        color: ManimColor | None = None,
         **kwargs,
     ):
         super().__init__(
-            fill_color=fill_color,
+            color=color,
+            fill_color=fill_color or color or DEFAULT_LIGHT_COLOR,
             fill_opacity=fill_opacity,
             stroke_width=stroke_width,
             **kwargs,
@@ -942,13 +950,14 @@ class StrokeArrow(Line):
         self,
         start: Vect3 | Mobject,
         end: Vect3 | Mobject,
-        stroke_color: ManimColor = DEFAULT_LIGHT_COLOR,
+        stroke_color: ManimColor | None = None,
         stroke_width: float = 5,
         buff: float = 0.25,
         tip_width_ratio: float = 5,
         tip_len_to_width: float = 0.0075,
         max_tip_length_to_length_ratio: float = 0.3,
         max_width_to_length_ratio: float = 8.0,
+        color: ManimColor | None = None,
         **kwargs,
     ):
         self.tip_width_ratio = tip_width_ratio
@@ -959,7 +968,8 @@ class StrokeArrow(Line):
         self.original_stroke_width = stroke_width
         super().__init__(
             start, end,
-            stroke_color=stroke_color,
+            color=color,
+            stroke_color=stroke_color or color or DEFAULT_LIGHT_COLOR,
             stroke_width=stroke_width,
             buff=buff,
             **kwargs
@@ -1079,7 +1089,7 @@ class Arrow(Line):
         end: Vect3 | Mobject = LEFT,
         buff: float = MED_SMALL_BUFF,
         path_arc: float = 0,
-        fill_color: ManimColor = DEFAULT_LIGHT_COLOR,
+        fill_color: ManimColor | None = None,
         fill_opacity: float = 1.0,
         stroke_width: float = 0.0,
         thickness: float = 3.0,
@@ -1087,6 +1097,7 @@ class Arrow(Line):
         tip_angle: float = PI / 3,
         max_tip_length_to_length_ratio: float = 0.5,
         max_width_to_length_ratio: float = 0.1,
+        color: ManimColor | None = None,
         **kwargs,
     ):
         self.thickness = thickness
@@ -1096,7 +1107,8 @@ class Arrow(Line):
         self.max_width_to_length_ratio = max_width_to_length_ratio
         super().__init__(
             start, end,
-            fill_color=fill_color,
+            color=color,
+            fill_color=fill_color or color or DEFAULT_LIGHT_COLOR,
             fill_opacity=fill_opacity,
             stroke_width=stroke_width,
             buff=buff,
@@ -1405,15 +1417,17 @@ class ArrowTip(Triangle):
         width: float = DEFAULT_ARROW_TIP_WIDTH,
         length: float = DEFAULT_ARROW_TIP_LENGTH,
         fill_opacity: float = 1.0,
-        fill_color: ManimColor = DEFAULT_MOBJECT_COLOR,
+        fill_color: ManimColor | None = None,
         stroke_width: float = 0.0,
         tip_style: int = 0,  # triangle=0, inner_smooth=1, dot=2
+        color: ManimColor | None = None,
         **kwargs
     ):
         super().__init__(
             start_angle=0,
             fill_opacity=fill_opacity,
-            fill_color=fill_color,
+            color=color,
+            fill_color=fill_color or color or DEFAULT_MOBJECT_COLOR,
             stroke_width=stroke_width,
             **kwargs
         )

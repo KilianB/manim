@@ -100,8 +100,9 @@ class Cross(VGroup):
     def __init__(
         self,
         mobject: Mobject,
-        stroke_color: ManimColor = RED,
+        stroke_color: ManimColor | None = None,
         stroke_width: float | Sequence[float] = [0, 6, 0],
+        color: ManimColor | None = None,
         **kwargs
     ):
         super().__init__(
@@ -110,7 +111,7 @@ class Cross(VGroup):
         )
         self.insert_n_curves(20)
         self.replace(mobject, stretch=True)
-        self.set_stroke(stroke_color, width=stroke_width)
+        self.set_stroke(stroke_color or color or RED, width=stroke_width)
 
 
 class Underline(Line):

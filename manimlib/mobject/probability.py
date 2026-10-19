@@ -30,19 +30,20 @@ class SampleSpace(Rectangle):
         self,
         width: float = 3,
         height: float = 3,
-        fill_color: ManimColor = GREY_D,
+        fill_color: ManimColor | None = None,
         fill_opacity: float = 1,
         stroke_width: float = 0.5,
-        stroke_color: ManimColor = GREY_B,
+        stroke_color: ManimColor | None = None,
         default_label_scale_val: float = 1,
+        color: ManimColor | None = None,
         **kwargs,
     ):
         super().__init__(
             width, height,
-            fill_color=fill_color,
+            fill_color=fill_color or color or GREY_D,
             fill_opacity=fill_opacity,
             stroke_width=stroke_width,
-            stroke_color=stroke_color,
+            stroke_color=stroke_color or color or GREY_B,
             **kwargs
         )
         self.default_label_scale_val = default_label_scale_val
